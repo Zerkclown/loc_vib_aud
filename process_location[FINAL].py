@@ -252,24 +252,24 @@ def pythag(x, y, x1, y1):
 
 
 #how timeDiffArr is created. Commented out because it is saved and dont want to compile everytime
-# timeDiffArr = []
-# for i in np.arange(0, 1, .1):
-#     timeDiff = []
-#     for j in np.arange(0, 1, .1):
-#         t1 = pythag(0, 0, j, i)
-#         t2 = pythag(1, 0, j, i)
-#         t3 = pythag(1, 1, j, i)
-#
-#         diff12 = (t1 - t2) / 343
-#         diff13 = (t1 - t3) / 343
-#         diff23 = (t2 - t3) / 343
-#         timeDiff.append([diff12, diff13, diff23])
-#     timeDiffArr.append(timeDiff)
+timeDiffArr = []
+for i in np.arange(0, 1, .1):
+    timeDiff = []
+    for j in np.arange(0, 1, .1):
+        t1 = pythag(0, 0, j, i)
+        t2 = pythag(1, 0, j, i)
+        t3 = pythag(1, 1, j, i)
 
-#
-# with open('timeDiffPickle','wb') as file:
-#     pickle.dump(timeDiffArr,file)
-# file.close()
+        diff12 = (t1 - t2) / 343
+        diff13 = (t1 - t3) / 343
+        diff23 = (t2 - t3) / 343
+        timeDiff.append([diff12, diff13, diff23])
+    timeDiffArr.append(timeDiff)
+
+
+with open('timeDiffPickle','wb') as file:
+    pickle.dump(timeDiffArr,file)
+file.close()
 
 #grab the timeDiffArray that is saved
 with open('timeDiffPickle','rb') as file:
@@ -391,7 +391,7 @@ if __name__ == "__main__":
     data_rate_mic = 8000
     data_rate_imu = 200
     count = 0
-    dir = '5x7'
+    dir = '4x6'
     for filename in os.listdir(dir):
         if count == 0:
             data = decode_aud_esp(dir + '/' + filename, 8000)
